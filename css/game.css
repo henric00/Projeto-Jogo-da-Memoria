@@ -2,15 +2,21 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-image: url('../images/bg.jpg');
+  background-image: url('../images/It\'s\ 23_12.gif');
   background-size: cover;
+  background-position: center;
   min-height: 100vh;
+  height: 100vh;
+  box-sizing: border-box;
   align-items: center;
-  justify-content: center;
-  padding: 20px 20px 50px;
+  justify-content: start; /* Mantém header no topo */
+  padding: 20px 20px 10px;
+  overflow: hidden; /* Impede scroll */
 }
 
 header {
+  flex-shrink: 0;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,20 +31,22 @@ header {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 15px;
-  width: 100%;
-  max-width: 1200px;
+  grid-template-columns: repeat(6, 1fr); /* 6 colunas fixas */
+  grid-template-rows: repeat(6, 1fr);    /* 6 linhas fixas */
+  gap: 10px;
+  width: 90vmin;   /* tamanho quadrado baseado na menor dimensão da tela */
+  height: 90vmin;
   margin: 0 auto;
 }
 
+
 .card {
-  aspect-ratio: 3/4;
   width: 100%;
+  aspect-ratio: 3 / 4;
   border-radius: 5px;
   position: relative;
-  transition: all 400ms ease;
   transform-style: preserve-3d;
+  transition: all 400ms ease;
   background-color: #ccc;
 }
 
@@ -58,7 +66,7 @@ header {
 }
 
 .back {
-  background-image: url('../images/back.png');
+  background-image: url('../images/ChatGPT\ Image\ 6\ de\ abr.\ de\ 2025\,\ 10_19_49.png');
   backface-visibility: hidden;
 }
 
