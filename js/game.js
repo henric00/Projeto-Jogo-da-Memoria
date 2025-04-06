@@ -31,7 +31,20 @@ const checkEndGame = () => {
 
   if (disabledCards.length === 24) {
     clearInterval(this.loop);
-    alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${timer.innerHTML} segundos`);
+  
+    // Certifique-se de que timer.innerHTML tem valor em segundos
+    const totalSeconds = parseInt(timer.innerHTML);
+  
+    if (!isNaN(totalSeconds)) {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+  
+      const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  
+      alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${formattedTime}`);
+    } else {
+      alert(`Parabéns, ${spanPlayer.innerHTML}! (tempo não pôde ser lido)`);
+    }
   }
 }
 
