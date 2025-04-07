@@ -20,3 +20,7 @@ const handleSubmit = (event) => {
 
 input.addEventListener('input', validateInput);
 form.addEventListener('submit', handleSubmit);
+input.addEventListener('paste', (e) => {
+  e.preventDefault();
+  alert('Control V? não é permitido. seja criativo.');
+});
