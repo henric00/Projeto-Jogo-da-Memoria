@@ -37,8 +37,7 @@ const checkEndGame = () => {
       bgMusic.currentTime = 0;
     }
 
-    const totalSeconds = parseInt(timer.innerHTML);
-
+    const totalSeconds = parseInt(timer.getAttribute('data-time')) || 0;
     if (!isNaN(totalSeconds)) {
       const minutes = Math.floor(totalSeconds / 60);
       const seconds = totalSeconds % 60;
@@ -115,12 +114,19 @@ const loadGame = () => {
 }
 
 const startTimer = () => {
-  timer.innerHTML = '0';
+  timer.setAttribute('data-time', '0'); 
+  timer.innerHTML = '00:00'; 
   this.loop = setInterval(() => {
-    const currentTime = +timer.innerHTML;
-    timer.innerHTML = currentTime + 1;
+    const currentTime = parseInt(timer.getAttribute('data-time')) || 0;
+    const newTime = currentTime + 1;
+
+    timer.setAttribute('data-time', newTime);
+
+    const minutes = Math.floor(newTime / 60);
+    const seconds = newTime % 60;
+    timer.innerHTML = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   }, 1000);
-}
+};
 
 window.onload = () => {
   spanPlayer.innerHTML = localStorage.getItem('player');
