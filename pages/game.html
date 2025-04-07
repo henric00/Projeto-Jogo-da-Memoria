@@ -10,9 +10,6 @@
   <script defer src="../js/game.js"></script>
   <audio id="bg-music" src="/images/pixel-party-218705.mp3" autoplay loop muted></audio>
 
-    
-  </audio>
-
   <title>Memory Game</title>
 </head>
 
@@ -21,7 +18,10 @@
   <main>
     <header>
       <span class="player"></span>
-      <span>Tempo: <span class="timer">00</span></span>
+      <div class="timer-container">
+        <span>Tempo:</span>
+        <span class="timer" data-time="0">0</span>
+      </div>
     </header>
 
     <div class="grid"></div>
