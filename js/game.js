@@ -32,9 +32,10 @@ const checkEndGame = () => {
   if (disabledCards.length === 24) {
     clearInterval(this.loop);
 
-    // Parar música ao final do jogo
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
+    if (bgMusic) {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+    }
 
     const totalSeconds = parseInt(timer.innerHTML);
 
@@ -45,18 +46,11 @@ const checkEndGame = () => {
       const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
       alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${formattedTime}`);
-        location.reload();
-
-      // Salvar ranking
-      const history = JSON.parse(localStorage.getItem('ranking')) || [];
-      history.push({
-        player: spanPlayer.innerHTML,
-        time: formattedTime
-      });
-      localStorage.setItem('ranking', JSON.stringify(history));
     } else {
       alert(`Parabéns, ${spanPlayer.innerHTML}! (tempo não pôde ser lido)`);
     }
+
+    location.reload();
   }
 }
 
@@ -121,18 +115,20 @@ const loadGame = () => {
 }
 
 const startTimer = () => {
+  timer.innerHTML = '0';
   this.loop = setInterval(() => {
     const currentTime = +timer.innerHTML;
     timer.innerHTML = currentTime + 1;
   }, 1000);
 }
 
-// ✅ Evento único para carregar o jogo e iniciar a música
 window.onload = () => {
   spanPlayer.innerHTML = localStorage.getItem('player');
   startTimer();
   loadGame();
 
-  bgMusic.muted = false;
-  bgMusic.play();
+  if (bgMusic) {
+    bgMusic.muted = false;
+    bgMusic.play();
+  }
 }
