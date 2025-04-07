@@ -45,6 +45,7 @@ const checkEndGame = () => {
       const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
       alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${formattedTime}`);
+        location.reload();
 
       // Salvar ranking
       const history = JSON.parse(localStorage.getItem('ranking')) || [];
